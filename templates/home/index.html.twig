@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block carousel %} {% endblock %}
+{% block content %}
+
+    <h3>Nos produits les plus demandés</h3>
+    <div class="row">
+
+        {% for product in products %}
+            <div class="col-md-4">
+                {% include 'product/single_product.html.twig' %}
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <!-- START THE FEATURETTES -->
+
+    <hr class="featurette-divider">
+
+    {% set featureCount = 1 %}
+    {% for feature in features %}
+
+    <div class="row featurette">
+        <div class="col-md-7 {% if featureCount is odd %} order-md-2 {% endif %}">
+            <h2 class="featurette-heading">{{ feature.title }} <br> <span class="text-muted">{{ feature.subtitle }}</span></h2>
+            <p class="lead">{{ feature.description }}</p>
+        </div>
+        <div class="col-md-5 {% if featureCount is odd %} order-md-1 {% endif %}">
+            <img src="/illustrations-feature/{{ feature.illustration }}" alt="{{ feature.descriptionIllustration }}" class="img-fluid">
+        </div>
+    </div>
+
+    <hr class="featurette-divider">
+    {% set featureCount = featureCount + 1 %}
+    {% endfor %}
+
+{% endblock %}

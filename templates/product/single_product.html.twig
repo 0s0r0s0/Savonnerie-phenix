@@ -1,0 +1,16 @@
+<a href="{{ path('app_product', {'slug' : product.slug}) }}">
+
+    <div class="product-item text-center">
+
+
+        <img src="/illustrations-produits/{{ product.illustration }}" alt="image de {{ product.name }}" class="img-fluid">
+
+        <h5 class="product-title">{{ product.name }}</h5>
+        <span class="product-subtitle">{{ product.subtitle }}</span>
+        <span class="product-price">{{ (product.price / 100) | number_format(2, ',', '.' )}} €</span>
+        <a href="{{ path('app_add_to_cart', { 'id' : product.id, 'origin':app.request.attributes.get('_route') }) }}" class="btn btn-primary btn-sm ml-3">Ajouter au panier</a>
+
+
+    </div>
+</a>
+

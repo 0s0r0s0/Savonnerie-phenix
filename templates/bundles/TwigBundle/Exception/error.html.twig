@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page introuvable{% endblock %}
+
+{% block content %}
+
+    <h1 class="text-danger mt-5 mb-5">Page introuvable ⛔️ </h1>
+
+    <hr>
+    <p class="font-weight-bold text-dark" style="font-size: 16px ">Si vous cherchiez les recettes secrètes de nos savons, celles-ci sont bien gardées ! Si vous êtes perdus : <a href="{{ path('app_home') }}" class="btn btn-info align-items-center">Retrouver mon chemin</a></p>
+    <hr>
+
+
+{% endblock %}

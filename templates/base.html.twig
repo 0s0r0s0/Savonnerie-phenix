@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="La boutique qui vent QUE du made in France">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.1.1">
+    <title>{% block title %}La Boutique Française - 100% Made In France{% endblock %}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/css/boutiquefrancaise.css') }}">
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{{ 'assets/css/carousel.css' }}" rel="stylesheet">
+</head>
+<body>
+<header class="pb-5">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+        <a class="navbar-brand" href="{{ path('app_home') }}">La Boutique Française</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('app_products') }}">Nos produits</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Qui sommes-nous ?</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{{ path('app_contact') }}">Contact</a>
+                </li>
+
+            </ul>
+            <div class="navbar-item-custom">
+                {% if app.user %}
+                    <a href="{{ path('app_account') }}">Mon compte <small>({{ app.user.firstname }})</small></a> | <a href="{{ path('app_logout') }}">Déconnexion</a>
+                {% else %}
+                    <a href="{{ path('app_login') }}">Connexion</a> | <a href="{{ path('app_register') }}">Inscription</a>
+                {% endif %}
+            </div>
+            <a href="{{ path('app_cart') }}">
+                {% if app.session.get('cart') %}
+                    <img src="{{ asset('assets/img/shopping-cart-active.png') }}" alt="mon panier" class=" cart-icon animate__animated animate__heartBeat animate__infinite">
+                {% else %}
+                    <img src="{{ asset('assets/img/shopping-cart-empty.png') }}" alt="mon panier" class="cart-icon">
+                {% endif %}
+
+            </a>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('admin') }}" target="_blank">
+                    <img src="{{ asset('assets/img/admin.png') }}" alt="admin page" class="cart-icon-admin animate__animated animate__bounce">
+                </a>
+                <a href="#" target="_blank">
+                    <img src="{{ asset('assets/img/kisspng-stripe-payment-gateway-paypal-e-commerce-linkedin-5b110ef7c2da29.9472243315278445997981.png')}}"
+                         alt="logo stripe" class="cart-icon-admin animate__heartBeat">
+                </a>
+                <a href="#" target="_blank">
+                    <img src="{{ asset('assets/img/kisspng-mailjet-rollingbox-email-marketing-email-marketing-5afe724c930e86.8995851015266248446024.png')}}"
+                         alt="logo mailjet" class="cart-icon-admin animate__heartBeat">
+                </a>
+            {% endif %}
+
+        </div>
+    </nav>
+</header>
+
+<main role="main">
+
+    {% if block('carousel') is defined %}
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" style="max-width: 80%; margin-left: 10%; margin-top: -40px;">
+        <ol class="carousel-indicators">
+            {% for key,header in headers %}
+                <li data-target="#myCarousel" data-slide-to="{{ key }}" {% if key == 0 %}class="active" {% endif %}></li>
+            {% endfor %}
+
+        </ol>
+        <div class="carousel-inner">
+            {% for key,header in headers %}
+            <div class="carousel-item {% if key == 0 %}active{% endif %}" style="background-size: cover; background: url('/illustrations-header/{{ header.illustration }}'); background-position: center">
+                <div class="container">
+                    <div class="carousel-caption text-left">
+                        <h1>{{ header.title }}</h1>
+                        <p>{{ header.content }}</p>
+                        <p><a class="btn btn-lg btn-info" href="{{ header.btnUrl }}" role="button">{{ header.btnTitle }}</a></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+
+    {% endif %}
+    <!-- Marketing messaging and featurettes
+    ================================================== -->
+    <!-- Wrap the rest of the page in another container to center all the content. -->
+
+    <div class="container marketing{% if block('carousel') is not defined %}mt-5{% endif %}">
+        {% block content %}
+        {% endblock %}
+        <!-- Three columns of text below the carousel -->
+
+
+        <!-- /END THE FEATURETTES -->
+
+    </div><!-- /.container -->
+
+    <!-- FOOTER -->
+    <footer class="footer-custom">
+        <p class="float-right"><a href="#">Retour en haut</a></p>
+        <p>&copy; 2017-2020 La Boutique Française <br> <small>La boutique 100% Made In France <a href="#">Privacy</a> <a href="#">Terms</a></small></p>
+    </footer>
+
+</main>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="{{ 'assets/js/bootstrap.bundle.js' }}"></script>
+
+{% block script %}
+
+{% endblock %}
+
+</body>
+</html>

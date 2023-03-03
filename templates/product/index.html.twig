@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos produits{% endblock %}
+
+
+
+{% block content %}
+
+    {% for message in app.flashes('notice') %}
+
+    <div class="alert alert-info"> {{ message }}</div>
+
+    {% endfor %}
+
+    <div class="row mt-5">
+        <div class="col-md-3">
+            <h3>Filtrer</h3>
+            {{ form(form) }}
+        </div>
+        <div class="col-md-9">
+            <h3>Nos produits</h3>
+
+            <div class="row product-container">
+            {% for product in products %}
+
+                <div class="col-md-4">
+                    {% include 'product/single_product.html.twig' %}
+                </div>
+
+            {% endfor %}
+                {%  if products is empty%}
+
+                    <span class="ml-4 mt-5">Aucun résultat disponible, effectuez une nouvelle recherche ou <a href="{{ path('app_product', {'slug': 'x'}) }}">afficher tous les produits</a></span>
+
+                {% endif %}
+
+        </div>
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,124 @@
+a {
+    text-decoration: none;
+}
+
+body {
+    position: relative;
+}
+
+.navbar-item-custom, .navbar-item-custom a {
+    color: #fff;
+}
+
+.footer-custom {
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #dfeaff;
+    padding-top: 25px;
+}
+
+.product-item h5 {
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-bottom: 1px;
+}
+
+.product-item {
+    margin-top: 50px;
+}
+
+.product-item .product-title {
+    font-size: 18px;
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.product-item .product-subtitle {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.product-item .product-price {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.product-container {
+    margin-bottom: 150px;
+}
+
+.product-page-container {
+    margin-top: 150px;
+}
+
+.product-page-price {
+    font-size: 19px;
+    font-weight: bolder;
+}
+
+.cart-icon {
+    height: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+    .cart-icon-active {
+        border-color: #00bb00;
+    }
+
+.cart-icon-admin {
+    height: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+    .cart-icon-admin:hover {
+        height: 22px;
+        border: white solid 1px;
+    }
+
+.block-small {
+    max-width: 600px;
+    margin: auto;
+}
+
+.form-check {
+    background-color: #f4f8ff ;
+    padding: 20px 65px;
+    margin-top: 7px;
+}
+
+.col-form-label {
+    font-weight: bold;
+}
+
+.order-summary {
+    background-color: #f4f8ff ;
+    padding: 20px;
+    margin-top: 22px;
+
+}
+
+.account-item {
+    background-color: #f1f2f6;
+    padding: 70px;
+    margin-top: 25px;
+}
+
+    .account-item a {
+        text-transform: uppercase;
+        font-size: 14px;
+        color: #4b6584;
+    }
+
+    .account-item a:hover {
+        color: #778ca3;
+        text-decoration: none;
+        font-size: 16px;
+
+
+    }
